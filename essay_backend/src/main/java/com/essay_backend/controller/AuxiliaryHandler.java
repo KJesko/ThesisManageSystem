@@ -159,20 +159,25 @@ public class AuxiliaryHandler {
     public Map<String, String> mailTeacher() {
         List<Map<String, Object>> teacherInfo = (List<Map<String, Object>>) teacherInfo().get("teacherInfo");
         Map<String, String> map = new HashMap<>();
+        StringBuilder stringBuilder = new StringBuilder();
         for (Map<String, Object> teacherMap : teacherInfo) {
             int teacherId = (int) teacherMap.get("id");
             String teacherName = (String) teacherMap.get("name");
             String toEmail = userService.getById(teacherId).getEmail();
             try {
                 mailService.sendEmail(toEmail, "毕业论文查看提醒",
-                        "尊敬的" + teacherName + "老师，您的学生提交的毕业论文还未查看，请老师查看论文后提交评阅/指导意见表，非常感谢");
+                        "尊敬的" + teacherName + "老师，您好！\n 需您评审的毕业论文还未完成，请您前往 http://10.20.81.187:3000/ 查看论文后提交评阅/指导意见表，非常感谢!");
             } catch (MessagingException e) {
-                e.printStackTrace();
-                map.put("msg", teacherName + "邮件发送失败 ");
+//                e.printStackTrace();
+                stringBuilder.append(teacherName).append(",");
+//                map.put("msg", teacherName + "邮件发送失败 ");
             }
         }
-        if(!map.containsKey("msg")) {
+        System.out.println(stringBuilder.toString());
+        if(stringBuilder.toString().equals("")) {
             map.put("msg","success");
+        }else {
+            map.put("msg", stringBuilder.toString() + " 邮件发送失败 ");
         }
         return map;
 

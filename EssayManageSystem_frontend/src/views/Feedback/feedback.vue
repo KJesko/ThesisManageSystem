@@ -20,19 +20,36 @@
               </el-form-item>
             </el-col>
           </el-row>
+          <el-divider/>
           <el-row>
-            <el-col :span="18">
-              <el-form-item label="指导老师评语" style="display: flex; align-items: center;">
-                <span style="margin-right: 20px;">{{ instructorFeedback }}</span>
+            <el-col :span="24">
+              <el-form-item label="老师1评语:"
+                            style="display: flex;
+                              align-items: flex-start;
+
+                              margin-right: 20px; /* 右侧留出20px的空隙 */
+                              "
+              >
+                <span style="margin-right: 20px; display: flex;text-align: left;">{{instructorFeedback }}</span>
+
               </el-form-item>
             </el-col>
           </el-row>
+          <el-divider/>
           <el-row>
-            <el-col :span="18">
-              <el-form-item label="评阅老师评语" style="display: flex; align-items: center;">
-                <span style="margin-right: 20px;">{{ supervisorFeedback }}</span>
+            <el-col :span="24">
+              <el-form-item label="老师2评语:"
+                            style="display: flex;
+                              align-items: flex-start;
+                              margin-right: 20px; /* 右侧留出20px的空隙 */
+                              "
+              >
+                <span style="margin-right: 20px; display: flex;text-align: left;">{{supervisorFeedback }}</span>
+<!--                <span style="margin-right: 20px; display: inline-block; white-space: normal; word-break: break-all;">{{ supervisorFeedback }}</span>-->
+
               </el-form-item>
             </el-col>
+
           </el-row>
         </el-form>
       </div>
@@ -52,7 +69,7 @@ const route = useRoute()
 const router = useRouter()
 const title = ref('')
 const state = reactive({
-  edit_visible:false
+  edit_visible: false
 })
 
 
@@ -61,14 +78,14 @@ const instructorFeedback = ref()
 const supervisorFeedback = ref()
 
 
-onMounted(()=>{
+onMounted(() => {
   console.log(userinfo.uid);
   fetchData();
 })
 
-const fetchData=()=>{
+const fetchData = () => {
   console.log("fetch now!")
-  const url = '/api/review/feedback/'+userinfo.uid+'/j87y5ndh4sbg678h'
+  const url = '/api/review/feedback/' + userinfo.uid + '/j87y5ndh4sbg678h'
   axios.get(url).then((resp) => {
 
     instructorFeedback.value = resp.data.instructorString
@@ -77,8 +94,6 @@ const fetchData=()=>{
 
   })
 }
-
-
 
 
 </script>

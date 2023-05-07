@@ -218,7 +218,7 @@ public class ProjectHandler {
                     boolean flag = deleteFile(filePath);
                     project.setEssayFileId(null);
                     project.setEssayFileName(null);
-                    project.setState(0);
+//                    project.setState(0);
                     projectService.save(project);
                     fileMapService.removeById(fileId);
                     if (flag) {

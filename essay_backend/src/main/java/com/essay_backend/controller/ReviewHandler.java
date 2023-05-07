@@ -126,7 +126,7 @@ public class ReviewHandler {
                 if (project.getState() == 1) {
                     project.setState(2);
                 } else if (project.getState() == 3) {
-                    project.setProjId(4);
+                    project.setState(4);
 
                 }
 
@@ -146,7 +146,7 @@ public class ReviewHandler {
                 if (project.getState() == 1) {
                     project.setState(3);
                 } else if (project.getState() == 2) {
-                    project.setProjId(4);
+                    project.setState(4);
                 }
             }
 
@@ -330,7 +330,7 @@ public class ReviewHandler {
                 .body(resource);
     }
 
-    @GetMapping("feedback/{sid}/j87y5ndh4sbg678h")//0为指导，1为评阅
+    @GetMapping("feedback/{sid}/j87y5ndh4sbg678h")
     public Map<String, String> getFeedback(@PathVariable("sid") Integer sid) {
         // 读取文件内容
         Map<String, String> map = new HashMap<>();
@@ -365,10 +365,16 @@ public class ReviewHandler {
                 // 从PDF文档对象中剥离文本
                 String text = stripper.getText(pdfdocument);
                 int index = text.indexOf("评阅人意见：");
+                if (index < 0){
+                    index = text.indexOf("指导教师审阅意见：");
+                }
+
                 if (index != -1) {
                     text = text.substring(index);
                 }
+                System.out.println(text);
                 return text.replace("\r\n", "");
+
             } else if (extension.equals("doc") || extension.equals("docx")) {
                 File file = new File(filePath.toString());
                 FileInputStream fis = new FileInputStream(file);

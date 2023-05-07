@@ -139,7 +139,7 @@ public class UserHandler {
             String lineString = br.readLine();
             colName = lineString; //first row -- column name
             System.out.println(colName);
-            if (colName.equals("学号,姓名,专业,指导教师工号,指导教师,指导教师工号,评阅老师")) {
+            if (colName.startsWith("学号,姓名,专业,指导教师工号,指导教师,指导教师工号,评阅老师")) {
                 System.out.println("学号,姓名,专业,指导教师工号,指导教师,指导教师工号,评阅老师");
                 while ((lineString = br.readLine()) != null) {
                     lineStringArray = lineString.trim().
@@ -217,7 +217,7 @@ public class UserHandler {
             String lineString = br.readLine();
             colName = lineString; //first row -- column name
             System.out.println(colName);
-            if (colName.equals("学号/工号,姓名,密码,身份,邮箱")) {
+            if (colName.startsWith("学号/工号,姓名,密码,身份,邮箱")) {
                 while ((lineString = br.readLine()) != null) {
                     lineStringArray = lineString.trim().
                             split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)", -1);

@@ -32,7 +32,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-button type="primary" @click="editTitle" style="float: right;">修改题目</el-button>
+              <el-button type="primary" @click="editTitle" style="float: right;">点击编辑论文题目</el-button>
             </el-col>
           </el-row>
         </el-form>

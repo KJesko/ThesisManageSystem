@@ -106,13 +106,13 @@ const fetchData = async () => {
   // state.tableData = result.data
 
 
-  const url1 = `/api/review/studentForInstructor/${userinfo.uid}/`
+  const url1 = `/api/review/studentForInstructor/${userinfo.uid}/j87y5ndh4sbg678h`
   axios.get(url1).then((resp) => {
     // console.log(resp.data)
      studentForInstructor.value = resp.data
   })
 
-  const url2 = `/api/review/studentForSupervisor/${userinfo.uid}/`
+  const url2 = `/api/review/studentForSupervisor/${userinfo.uid}/j87y5ndh4sbg678h`
   axios.get(url2).then((resp) => {
     // console.log(resp.data)
     studentForSupervisor.value = resp.data
