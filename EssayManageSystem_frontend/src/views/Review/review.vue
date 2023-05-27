@@ -260,7 +260,7 @@ const confirmEdit = () => {
 const downloadEssay = () => {
   axios({
     method: 'get',
-    url: `/api/project/downloadEssay/${userinfo.uid}/j87y5ndh4sbg678h`,
+    url: `/api/project/downloadEssay/${sid.value}/j87y5ndh4sbg678h`,
     responseType: 'blob'  // 指定返回数据的类型为 Blob
   }).then(response => {
     const url = window.URL.createObjectURL(new Blob([response.data]))  // 创建 URL 对象
@@ -276,7 +276,7 @@ const downloadEssay = () => {
 const downloadDuplicate = () => {
   axios({
     method: 'get',
-    url: `/api/project/downloadDuplicate/${userinfo.uid}/j87y5ndh4sbg678h`,
+    url: `/api/project/downloadDuplicate/${sid.value}/j87y5ndh4sbg678h`,
     responseType: 'blob'  // 指定返回数据的类型为 Blob
   }).then(response => {
     const url = window.URL.createObjectURL(new Blob([response.data]))  // 创建 URL 对象
@@ -292,7 +292,7 @@ const downloadDuplicate = () => {
 const downloadOther = (index: any, row: any) => {
   axios({
     method: 'get',
-    url: `/api/project/downloadOther/${sid}/${row.id}/j87y5ndh4sbg678h`,
+    url: `/api/project/downloadOther/${sid.value}/${row.id}/j87y5ndh4sbg678h`,
     responseType: 'blob'  // 指定返回数据的类型为 Blob
   }).then(response => {
     const url = window.URL.createObjectURL(new Blob([response.data]))  // 创建 URL 对象

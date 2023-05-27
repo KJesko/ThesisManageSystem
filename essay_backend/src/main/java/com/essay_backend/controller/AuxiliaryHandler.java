@@ -23,6 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.essay_backend.utils.myUtils.deleteFile;
 
@@ -98,7 +99,7 @@ public class AuxiliaryHandler {
             projectInfo.add(map);
         }
         int[] order = new int[]{1, -3, -2, -1, 2};
-        projectInfo = projectInfo.stream().sorted(Comparator.comparingInt(o -> order[(int) o.get("state")])).toList();
+        projectInfo = projectInfo.stream().sorted(Comparator.comparingInt(o -> order[(int) o.get("state")])).collect(Collectors.toList());
         res.put("msg", "success");
         res.put("projectInfo", projectInfo);
         return res;
@@ -149,7 +150,7 @@ public class AuxiliaryHandler {
             map.put("supervisorDoneNum", supervisorDoneNum);
             teacherInfo.add(map);
         }
-        teacherInfo = teacherInfo.stream().sorted(Comparator.comparingInt(e -> (int) e.get("state"))).toList();
+        teacherInfo = teacherInfo.stream().sorted(Comparator.comparingInt(e -> (int) e.get("state"))).collect(Collectors.toList());
         res.put("msg", "success");
         res.put("teacherInfo", teacherInfo);
         return res;

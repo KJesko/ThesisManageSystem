@@ -15,24 +15,24 @@ class EssayBackendApplicationTests {
 	@Autowired
 	private StudentTeacherDao studentTeacherDao;
 
-	@Test
-	void insertUser(){
-		User user = new User();
-		user.setUid(10000000);
-		user.setName("a");
-		user.setPwd("123");
-		userDao.insert(user);
-	}
+//	@Test
+//	void insertUser(){
+//		User user = new User();
+//		user.setUid(10000000);
+//		user.setName("a");
+//		user.setPwd("123");
+//		userDao.insert(user);
+//	}
 
-	@Test
-	void allMatch(){
-		System.out.println(studentTeacherDao.getAllMatchInfo());
-	}
+//	@Test
+//	void allMatch(){
+//		System.out.println(studentTeacherDao.getAllMatchInfo());
+//	}
 
-	@Test
-	void selectByIdTest(){
-		System.out.println(studentTeacherDao.selectById(4));
-	}
+//	@Test
+//	void selectByIdTest(){
+//		System.out.println(studentTeacherDao.selectById(4));
+//	}
 
 
 }

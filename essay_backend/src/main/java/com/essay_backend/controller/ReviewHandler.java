@@ -36,6 +36,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.essay_backend.utils.myUtils.createDir;
 import static com.essay_backend.utils.myUtils.deleteFile;
@@ -58,7 +59,7 @@ public class ReviewHandler {
         int[] order = new int[]{1, 0, 2, 0, 2};
         return getStudentMaps(list, wrapper).stream().sorted(
                 (Comparator.comparingInt(o -> order[(int) o.get("state")])
-                )).toList();
+                )).collect(Collectors.toList());
     }
 
     @GetMapping("/studentForSupervisor/{tid}/j87y5ndh4sbg678h")
@@ -69,7 +70,7 @@ public class ReviewHandler {
         int[] order = new int[]{1, 0, 0, 2, 2};
         return getStudentMaps(list, wrapper).stream().sorted(
                 (Comparator.comparingInt(o -> order[(int) o.get("state")])
-                )).toList();
+                )).collect(Collectors.toList());
     }
 
     private List<Map<String, Object>> getStudentMaps(List<Map<String, Object>> list, QueryWrapper<StudentTeacher> wrapper) {
@@ -174,7 +175,7 @@ public class ReviewHandler {
                     if (project.getState() == 2) {
                         project.setState(1);
                     } else if (project.getState() == 4) {
-                        project.setProjId(3);
+                        project.setState(3);
                     }
                     fileMapService.removeById(fileId);
                     projectService.removeById(uid);
@@ -186,7 +187,7 @@ public class ReviewHandler {
                     if (project.getState() == 3) {
                         project.setState(1);
                     } else if (project.getState() == 4) {
-                        project.setProjId(2);
+                        project.setState(2);
                     }
                     fileMapService.removeById(fileId);
                     projectService.removeById(uid);
@@ -425,8 +426,11 @@ public class ReviewHandler {
                 result = result.substring(0, index);
             }
         }
-        return Objects.requireNonNullElse(result, "解析失败");
-
+        if (result == null){
+            return "解析失败";
+        }else {
+            return result;
+        }
     }
 
 }

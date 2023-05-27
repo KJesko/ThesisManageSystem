@@ -20,6 +20,7 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -302,7 +303,7 @@ public class UserHandler {
 
         Predicate<StudentTeacher> predicate = studentTeacher ->
                 studentTeacher.toString2().contains(search);
-        return studentTeacherService.getAllMatchInfo().stream().filter(predicate).skip((long) (number - 1) * size).limit(size).toList();
+        return studentTeacherService.getAllMatchInfo().stream().filter(predicate).skip((long) (number - 1) * size).limit(size).collect(Collectors.toList());
     }
 
     @PostMapping("/newMatch/j87y5ndh4sbg678h")
